@@ -20,7 +20,7 @@ export function Command(props: Props) {
 					<input
 						type='text'
 						defaultValue={name}
-						onChange={(e) => onCommandChange(e.target.value, response, index)}
+						onBlur={(e) => onCommandChange(e.target.value, response, index)}
 						className='border-b border-gray-700 text-white h-10 outline-none flex items-end p-0 bg-transparent'
 						focus='border-blue-500'
 					/>
@@ -28,7 +28,7 @@ export function Command(props: Props) {
 				<Input
 					containerClassName='flex-1'
 					defaultValue={response}
-					onChange={(e) => onCommandChange(name, e.target.value, index)}
+					onBlur={(e) => onCommandChange(name, e.target.value, index)}
 				/>
 				<Button
 					className='bg-red-500'
