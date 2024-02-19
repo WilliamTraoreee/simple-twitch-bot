@@ -66,30 +66,34 @@ function App() {
 	useEffect(() => {
 		if (!twitch) return;
 
-		const allCommands = localStorage.getItem('commands');
-		const parsedCommands = allCommands ? JSON.parse(allCommands) : [];
-
-		setCommands(parsedCommands);
-
 		twitch.connect();
 
 		twitch.on('connected', () => {
 			setConnected(true);
 		});
 
+		twitch.on('disconnected', () => {
+			setConnected(false);
+		});
+
 		twitch.on('message', (channel, _, message) => {
 			if (!message) return;
 
 			const command = commands.find(
-				(command) => `!${command.name}` === message
+				(command: any) => `!${command.name}` == message
 			);
-
-			console.log(command);
 
 			if (command) {
 				twitch.say(channel, command.response);
 			}
 		});
+	}, [commands]);
+
+	useEffect(() => {
+		const allCommands = localStorage.getItem('commands');
+		const parsedCommands = allCommands ? JSON.parse(allCommands) : [];
+
+		setCommands(parsedCommands);
 	}, []);
 
 	return (

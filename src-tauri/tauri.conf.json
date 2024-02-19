@@ -19,8 +19,6 @@
 		},
 		"windows": [
 			{
-				"transparent": true,
-				"titleBarStyle": "Overlay",
 				"fullscreen": false,
 				"resizable": true,
 				"title": "Twitch Bot",
